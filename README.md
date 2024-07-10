@@ -58,7 +58,7 @@ select Evaluate Data Quality rename it as a data quality checks, scroll down you
 
 3. If we want new column in original data recordwise which will include  value as record is passing or failing data quality check or not,so for that enable the "add new columns to indicate data quality errors"
 To get the result of "ruleoutcome" create new folder under existing S3 bucket as rule-outcome
-4. Go to GLUE ETL visual code-> ruleoutcome->select target as Amazon S3->edit properties->choose formating  as JSON->choose target as rule outcome in S3\
+4. Go to GLUE ETL visual code-> ruleoutcome->select target as Amazon S3->edit properties->choose formating  as JSON->choose target as rule outcome in S3
 5. Click on add nodes->transform-> search for Conditional router->add the condition under output-group-1 -> choose key as "DataQualityEvaluation" result-> add condition to match value with "failed" -> rename output group as "Failed records"
 6. We need to redirect the failed records on s3 bucket
 so that we can later analyze the data using athena so for that add destination as S3 bucket.
