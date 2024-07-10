@@ -79,6 +79,12 @@ SNS Notification receive on email
 Data Quality check failed record present under S3 bucket
 ![image](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/043d4e04-b011-4231-bf8f-6afcf431fb22)
 
+After run the glue_job no of records present in redshift table
+
+![No_of_records_loaded_into_redshift_table](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/ab220108-3363-4ed1-8592-0f3e787e48b6)
+
+
+
 
 
 
