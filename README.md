@@ -14,6 +14,9 @@ It is an ETL pipeline to find out quality movies using imdb_rating with the help
 
 ## Architecture of ETL pipeline
 
+![Architecture_of_ETL_pipeline](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/1aead0fe-9ec3-416c-b611-5918994e2c7d)
+
+
 
 ## Steps to create data pipeline
 
