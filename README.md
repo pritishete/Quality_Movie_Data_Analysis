@@ -47,12 +47,12 @@ Create the crawler as redshift-destination-table-crawler which will create the m
 
 
 **5. Design ETL pipeline using AWS GLUE**:
-1. Go to AWS Glue-> Select ETL jobs-> Visual ETL, select source as AWS Glue Catalog from where it will pick up the table meta data and rename as S3-data-source and select database as movie-data , attach glue role\
+1. Go to AWS Glue-> Select ETL jobs-> Visual ETL, select source as AWS Glue Catalog from where it will pick up the table meta data and rename as S3-data-source and select database as movie-data , attach glue role
    
    ![Glue_data_source](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/e9389773-7180-4ed4-922c-0b27d7a572d5)
 
 2. Need to apply data quality checks on input data for that go to the add icon  in GLUE ETL-> transform, 
-select Evaluate Data Quality rename it as a data quality checks, scroll down you will see the data quality actions, check in the publish result to amazon cloudwatch even if rule get failed continue with job\
+select Evaluate Data Quality rename it as a data quality checks, scroll down you will see the data quality actions, check in the publish result to amazon cloudwatch even if rule get failed continue with job
 
 ![Data_quality_check](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/c4cb39a8-fc2d-4eb8-8676-58f7c449dfff)
 
