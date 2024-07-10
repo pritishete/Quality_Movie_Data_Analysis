@@ -56,16 +56,16 @@ select Evaluate Data Quality rename it as a data quality checks, scroll down you
 
 ![Data_quality_check](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/c4cb39a8-fc2d-4eb8-8676-58f7c449dfff)
 
-3. If we want new column in original data recordwise which will include  value as record is passing or failing data quality check or not,so for that enable the "add new columns to indicate data quality errors"\
-To get the result of "ruleoutcome" create new folder under existing S3 bucket as rule-outcome\
+3. If we want new column in original data recordwise which will include  value as record is passing or failing data quality check or not,so for that enable the "add new columns to indicate data quality errors"
+To get the result of "ruleoutcome" create new folder under existing S3 bucket as rule-outcome
 4. Go to GLUE ETL visual code-> ruleoutcome->select target as Amazon S3->edit properties->choose formating  as JSON->choose target as rule outcome in S3\
 5. Click on add nodes->transform-> search for Conditional router->add the condition under output-group-1 -> choose key as "DataQualityEvaluation" result-> add condition to match value with "failed" -> rename output group as "Failed records"
 6. We need to redirect the failed records on s3 bucket
-so that we can later analyze the data using athena so for that add destination as S3 bucket.\
-Create"bad_records" directory under  movie-data-analysis-storage bucket to store failed records in JSON format\
+so that we can later analyze the data using athena so for that add destination as S3 bucket.
+Create"bad_records" directory under  movie-data-analysis-storage bucket to store failed records in JSON format
 7. Now have to add successfull records into redshift table so will need to update the schema as per already created destination table , so for that select default group->add "change schema" transformation->rename it to "drop-columns"->change data type as per schema of redshift table->select target as AWS data catalog->rename to redshift-load-table->choose db,redshift meta data table name,temp location from S3 bucket(create new directory as redshift-temp-data under existing S3 bucket)->select redshift-role->rename GLUE job as "ETL_Movie_Data_Analysis_Using_Glue"->go to 
-job details->add parameter as --Job Name, update property, select 2 workers and glue role->create 2 VPC 1 for glue and 1 for cloudwatch log to avoid errors after running Glue job->run the ETL_Movie_Data_Analysis_Using_GLUE job ->once job runs successfully do the query on redshift table, will find some records where out of 1000 records only 33 records get loaded into table which means others records are of below average movies\
-8. To check bad records go to S3 bucket path movie-data-analysis-storage/bad_records, download it will see failed records in JSON format where "DataQualityEvaluationResult" value is "failed"\
+job details->add parameter as --Job Name, update property, select 2 workers and glue role->create 2 VPC 1 for glue and 1 for cloudwatch log to avoid errors after running Glue job->run the ETL_Movie_Data_Analysis_Using_GLUE job ->once job runs successfully do the query on redshift table, will find some records where out of 1000 records only 33 records get loaded into table which means others records are of below average movies
+8. To check bad records go to S3 bucket path movie-data-analysis-storage/bad_records, download it will see failed records in JSON format where "DataQualityEvaluationResult" value is "failed"
 9. Now have to create event bridge rule so that once data quality processing check is done will get result as failed or succeeded records  capture through event bridge which is integrate with SNS topic on email, to do that search event bridge on AWS console->click on eventbridgerule and create rule as "MovieDQCheckStatus_Rule"->select rule with event pattern ->next ->select "Glue Data Quality" as AWS Service->select Data Quality Evaluation Results available as event type-> select specific state option for event type specification 1,under that select both state succeeded and failed->select 
 target as SNS AWS Service ->create topic in SNS and add email as subscriber and create the rule so once run the GLUE ETL job will receive email for failed and succeeded records
 
