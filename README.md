@@ -29,7 +29,7 @@ It is an ETL pipeline to find out quality movies using imdb_rating with the help
 
 ![image](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/dc94aadb-d9da-4530-8a21-63e52645e574)
 
-After runnin crawlers  below meta data tables get created
+After running crawlers  below meta data tables get created
 
 ![image](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/0bc8f29e-ab53-4ceb-9efa-950f0575b622)
 
