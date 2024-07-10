@@ -21,6 +21,7 @@ It is an ETL pipeline to find out quality movies using imdb_rating with the help
 ## Steps to create data pipeline
 
 **1. Creation of bucket**: Create S3 bucket with name of movie-data-analysis-storage  and upload imdb_movies_rating.csv
+
 ![image](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/00f54767-4119-45b4-8ee0-2e8301d709d1)
 
 
@@ -37,11 +38,13 @@ Run the data-quality check to see how much data following that rule , create new
 
 **4. Create destination table in redshift**: Create schema as movies and under that create table movies-imdb-movies-rating\
 Create the crawler as redshift-destination-table-crawler which will create the meta table as redshift_dev_movies_imdb_movies_rating for redshift destination table
+
 ![image](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/2b57b5fc-8cc1-4036-a975-104b6ad73b0c)
 
 
 **5. Design ETL pipeline using AWS GLUE**:
 1. Go to AWS Glue-> Select ETL jobs-> Visual ETL, select source as AWS Glue Catalog from where it will pick up the table meta data and rename as S3-data-source and select database as movie-data , attach glue role\
+   
    ![Glue_data_source](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/e9389773-7180-4ed4-922c-0b27d7a572d5)
 
 2. Need to apply data quality checks on input data for that go to the add icon  in GLUE ETL-> transform, 
@@ -67,7 +70,6 @@ target as SNS AWS Service ->create topic in SNS and add email as subscriber and 
 
 
 ## OutPut of ETL pipeline after execution
-
 
 
 Succeeded records present in redshift table 
