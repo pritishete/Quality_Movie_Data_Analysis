@@ -1,0 +1,49 @@
+1. Create S3 bucket s3://movie-data-analysis-storage
+/ and upload the file in input folder
+2. create a Crawler to crawl our source data and create the meta data out of it.
+3. While creating the crawler we have to select glue database. Create movie-data database for it.
+4. Run the Crawler ,after successfull run will find imdb_movies_rating_csv meta data table under movie-data database
+
+5. Setting up Redshift Cluster-
+	create redshift cluster
+	Node type - dc2.large
+	Number of nodes- 1
+
+create IAM role for redshift 
+attach policies-
+	AmazonRedshiftAllCommandsFullAccess
+	AmazonS3FullAccess
+	AWSGlueConsoleFullAccess
+	
+Run Below query in the redshift	
+	create schema netflix;
+	
+ CREATE TABLE movies.imdb_movies_rating (
+    Poster_Link VARCHAR(MAX),
+    Series_Title VARCHAR(MAX),
+    Released_Year VARCHAR(10),
+    Certificate VARCHAR(50),
+    Runtime VARCHAR(50),
+    Genre VARCHAR(200),
+    IMDB_Rating DECIMAL(10,2),
+    Overview VARCHAR(MAX),
+    Meta_score INT,
+    Director VARCHAR(200),
+    Star1 VARCHAR(200),
+    Star2 VARCHAR(200),
+    Star3 VARCHAR(200),
+    Star4 VARCHAR(200),
+    No_of_Votes INT,
+    Gross VARCHAR(20)
+);
+	
+6. create crawler for redshift destination table 
+	name- redshift-destination-table-crawler
+	datasource - JDBC
+	connection name - Redshift connection 
+		create redshift connections
+		create connection -> select redshift as DS -> Chose redshift cluster -> give username and pwd > create
+	include path - dev/movies/imdb_movies_rating(redshift table's full path)
+	
+	target database - movies
+	
