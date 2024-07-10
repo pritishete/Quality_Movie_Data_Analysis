@@ -29,6 +29,10 @@ It is an ETL pipeline to find out quality movies using imdb_rating with the help
 
 ![image](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/dc94aadb-d9da-4530-8a21-63e52645e574)
 
+After runnin crawlers  below meta data tables get created
+
+![image](https://github.com/pritishete/Quality_Movie_Data_Analysis/assets/57429486/0bc8f29e-ab53-4ceb-9efa-950f0575b622)
+
 
 **3. Data Quality checks**: Go to meta table present under movie-data database, click on imdb_movies_rating_csv meta data table , you will find data quality section in left side, click on recommendation rules and scan the data based on default parameter it will suggest some rules add those rules and update values as per your need. Will add rules  for imdb-rating to check if it is present or not and it's value should be in between 8.5 to 10.3.Save it as as movie_data_quality_check\
 Run the data-quality check to see how much data following that rule , create new folder in S3 bucket of name as historical-data-rule-outcome where after running data rules output will get store
